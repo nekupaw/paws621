@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gropius_feeties</title>
+    <link rel="stylesheet" href="Gropus_feeties.css">
+</head>
+
+<body>
+    <div class="UeberschriftContainer">
+        <a href="https://pawbs.de" class="Ueberschrift">Paws621</a>
+    </div>
+
+    <div class="FullImageContainer">
+        <div class="ImageContainer">
+            <img id="MainImage" class="Image" src="Gropius_feeties.png" alt="">
+        </div>
+        <div class="MetadataContainer">
+                <p id="MainFileName" class="MetaDataFileName">FileName</p>
+                <p id="MainFileSize" class="MetaDataFileSize">Size: </p>
+
+                <div class="BtnContainer">
+
+                    <a download="Gropius_feeties.png">
+                        <button class="DownloadBtn" type="button"><span>Download</span></button>
+                    </a>
+
+                    <a href="Gropius_feeties.png" target="_blank">
+                        <button class="ViewBtn" type="button" onclick="Gropius_feeties.png"><span>View</span></button>
+                    </a>
+                  
+                </div>
+
+        </div>
+    </div>
+
+    <div class="Background"></div>
+
+    <script>
+        function GetFileName() {
+            var MainPicture = document.getElementById("MainImage");
+            var MainPictureSrc = MainPicture.src;
+            var MainPictureFileName = MainPictureSrc.split('/').pop();
+            var FileNameText = document.getElementById("MainFileName");
+            FileNameText.textContent = "Filename: " + MainPictureFileName;
+        }
+
+        var img = new Image();
+        img.src = 'Gropius_feeties.png';
+        var breite, höhe;
+
+        img.onload = function () {
+
+            ImgSize();
+            GetFileName();
+            GetImageSize();
+        };
+
+        function ImgSize() {
+            breite = img.width;
+            höhe = img.height;
+        }
+
+        function GetImageSize() {
+            var SizeText = document.getElementById("MainFileSize");
+            SizeText.textContent = "Size: " + breite + " x " + höhe;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

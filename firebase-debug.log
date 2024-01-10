@@ -1,0 +1,206 @@
+[debug] [2024-01-07T19:32:59.393Z] ----------------------------------------------------------------------
+[debug] [2024-01-07T19:32:59.396Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Tristan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2024-01-07T19:32:59.396Z] CLI Version:   13.0.2
+[debug] [2024-01-07T19:32:59.396Z] Platform:      win32
+[debug] [2024-01-07T19:32:59.396Z] Node Version:  v20.5.1
+[debug] [2024-01-07T19:32:59.397Z] Time:          Sun Jan 07 2024 20:32:59 GMT+0100 (Central European Standard Time)
+[debug] [2024-01-07T19:32:59.397Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-07T19:32:59.478Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-07T19:32:59.479Z] > authorizing via signed-in user (heubnertristan@gmail.com)
+[debug] [2024-01-07T19:32:59.479Z] [iam] checking project paws621-be248 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-01-07T19:32:59.481Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/paws621-be248:testIamPermissions [none]
+[debug] [2024-01-07T19:32:59.481Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/paws621-be248:testIamPermissions x-goog-quota-user=projects/paws621-be248
+[debug] [2024-01-07T19:32:59.481Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/paws621-be248:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-01-07T19:32:59.908Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/paws621-be248:testIamPermissions 200
+[debug] [2024-01-07T19:32:59.908Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/paws621-be248:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-01-07T19:32:59.909Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/paws621-be248/serviceAccounts/paws621-be248@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-01-07T19:32:59.909Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/paws621-be248/serviceAccounts/paws621-be248@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-01-07T19:33:00.745Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/paws621-be248/serviceAccounts/paws621-be248@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-01-07T19:33:00.745Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/paws621-be248/serviceAccounts/paws621-be248@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'paws621-be248'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script. 
+[debug] [2024-01-07T19:33:02.076Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 [none]
+[debug] [2024-01-07T19:33:02.628Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 200
+[debug] [2024-01-07T19:33:02.628Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 {"projectId":"paws621-be248","projectNumber":"540893716546","displayName":"paws621","name":"projects/paws621-be248","resources":{"hostingSite":"paws621-be248","realtimeDatabaseInstance":"paws621-be248-default-rtdb","storageBucket":"paws621-be248.appspot.com","locationId":"europe-west2"},"state":"ACTIVE","etag":"1_847abf42-6f87-4c70-ac48-0df5f344ed1e"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-01-07T19:33:02.630Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-01-07T19:33:02.630Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/paws621-be248
+[debug] [2024-01-07T19:33:02.631Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-01-07T19:33:02.631Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/paws621-be248
+[debug] [2024-01-07T19:33:02.632Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudbuild.googleapis.com [none]
+[debug] [2024-01-07T19:33:02.632Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudbuild.googleapis.com x-goog-quota-user=projects/paws621-be248
+[debug] [2024-01-07T19:33:02.633Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/artifactregistry.googleapis.com [none]
+[debug] [2024-01-07T19:33:02.633Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/artifactregistry.googleapis.com x-goog-quota-user=projects/paws621-be248
+[debug] [2024-01-07T19:33:03.180Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/runtimeconfig.googleapis.com 200
+[debug] [2024-01-07T19:33:03.180Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-01-07T19:33:03.197Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudfunctions.googleapis.com 200
+[debug] [2024-01-07T19:33:03.197Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-01-07T19:33:04.000Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/artifactregistry.googleapis.com 200
+[debug] [2024-01-07T19:33:04.001Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-01-07T19:33:04.023Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudbuild.googleapis.com 200
+[debug] [2024-01-07T19:33:04.023Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/paws621-be248/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-01-07T19:33:04.023Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248/adminSdkConfig [none]
+[debug] [2024-01-07T19:33:04.671Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248/adminSdkConfig 200
+[debug] [2024-01-07T19:33:04.671Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248/adminSdkConfig {"projectId":"paws621-be248","databaseURL":"https://paws621-be248-default-rtdb.firebaseio.com","storageBucket":"paws621-be248.appspot.com","locationId":"europe-west2"}
+[debug] [2024-01-07T19:33:04.672Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/paws621-be248/configs [none]
+[debug] [2024-01-07T19:33:05.092Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/paws621-be248/configs 200
+[debug] [2024-01-07T19:33:05.093Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/paws621-be248/configs {}
+[debug] [2024-01-07T19:33:05.094Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2024-01-07T19:33:06.595Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2024-01-07T19:33:06.596Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-01-07T19:33:06.597Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-01-07T19:33:06.603Z] Found firebase-functions binary at 'C:\Users\Tristan\Desktop\Paws621\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8517
+
+[debug] [2024-01-07T19:33:07.389Z] Got response from /__/functions.yaml {"endpoints":{"handleLikeButtonClick":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"callableTrigger":{},"entryPoint":"handleLikeButtonClick"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged C:\Users\Tristan\Desktop\Paws621\functions (74.29 KB) for uploading 
+[debug] [2024-01-07T19:33:12.445Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/-/functions [none]
+[debug] [2024-01-07T19:33:13.551Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/-/functions 200
+[debug] [2024-01-07T19:33:13.552Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/-/functions {}
+[debug] [2024-01-07T19:33:13.552Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/paws621-be248/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-01-07T19:33:14.485Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/paws621-be248/locations/-/functions 200
+[debug] [2024-01-07T19:33:14.486Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/paws621-be248/locations/-/functions {}
+[debug] [2024-01-07T19:33:14.488Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 [none]
+[debug] [2024-01-07T19:33:15.280Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 200
+[debug] [2024-01-07T19:33:15.280Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/paws621-be248 {"projectId":"paws621-be248","projectNumber":"540893716546","displayName":"paws621","name":"projects/paws621-be248","resources":{"hostingSite":"paws621-be248","realtimeDatabaseInstance":"paws621-be248-default-rtdb","storageBucket":"paws621-be248.appspot.com","locationId":"europe-west2"},"state":"ACTIVE","etag":"1_847abf42-6f87-4c70-ac48-0df5f344ed1e"}
+[debug] [2024-01-07T19:33:15.281Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2024-01-07T19:33:15.281Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2024-01-07T19:33:15.936Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2024-01-07T19:33:15.936Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip?GoogleAccessId=service-540893716546@gcf-admin-robot.iam.gserviceaccount.com&Expires=1704657806&Signature=hhcX6kUpeKt6hP232ys0a1jtdDIekF1BxPQJiaQ6Ao4%2FGZfii8wyLEXbK3TlkDTdMBLNwHyOKhxC3FEebl4%2Fp9KYQ35%2F2K4HM8068ELfuZ%2B4X91ZRACifntvPmQ0MoLr%2Bkiaqp2LyxSCX5k%2FuTi0S4tGXQUcH1pqkAlyl8dCNaGhC6SaPhfOQ10WhFrvLUOLYdwZq5Z1akPER3tIT7h%2FYcegqCJzPMjD24PMNFJgv4Z0X2OWAbsFUi6n69I9W8AoUJ27oz6ffkHgXvvKCn40XamvjSs8U%2Fw7N1arwIxG%2F0pstdpvGQxKLY787RufrIu00TNoZFmq8DhpnuLoa22FCg%3D%3D"}
+[debug] [2024-01-07T19:33:15.937Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip GoogleAccessId=service-540893716546%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1704657806&Signature=hhcX6kUpeKt6hP232ys0a1jtdDIekF1BxPQJiaQ6Ao4%2FGZfii8wyLEXbK3TlkDTdMBLNwHyOKhxC3FEebl4%2Fp9KYQ35%2F2K4HM8068ELfuZ%2B4X91ZRACifntvPmQ0MoLr%2Bkiaqp2LyxSCX5k%2FuTi0S4tGXQUcH1pqkAlyl8dCNaGhC6SaPhfOQ10WhFrvLUOLYdwZq5Z1akPER3tIT7h%2FYcegqCJzPMjD24PMNFJgv4Z0X2OWAbsFUi6n69I9W8AoUJ27oz6ffkHgXvvKCn40XamvjSs8U%2Fw7N1arwIxG%2F0pstdpvGQxKLY787RufrIu00TNoZFmq8DhpnuLoa22FCg%3D%3D
+[debug] [2024-01-07T19:33:15.937Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip [stream]
+[debug] [2024-01-07T19:33:17.037Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip 200
+[debug] [2024-01-07T19:33:17.037Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 10 (1st Gen) function handleLikeButtonClick(us-central1)... 
+[debug] [2024-01-07T19:33:17.041Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions [none]
+[debug] [2024-01-07T19:33:17.042Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions {"name":"projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick","sourceUploadUrl":"https://storage.googleapis.com/uploads-183576954662.us-central1.cloudfunctions.appspot.com/eafee820-19fa-429e-a911-d25a53d8a08f.zip?GoogleAccessId=service-540893716546@gcf-admin-robot.iam.gserviceaccount.com&Expires=1704657806&Signature=hhcX6kUpeKt6hP232ys0a1jtdDIekF1BxPQJiaQ6Ao4%2FGZfii8wyLEXbK3TlkDTdMBLNwHyOKhxC3FEebl4%2Fp9KYQ35%2F2K4HM8068ELfuZ%2B4X91ZRACifntvPmQ0MoLr%2Bkiaqp2LyxSCX5k%2FuTi0S4tGXQUcH1pqkAlyl8dCNaGhC6SaPhfOQ10WhFrvLUOLYdwZq5Z1akPER3tIT7h%2FYcegqCJzPMjD24PMNFJgv4Z0X2OWAbsFUi6n69I9W8AoUJ27oz6ffkHgXvvKCn40XamvjSs8U%2Fw7N1arwIxG%2F0pstdpvGQxKLY787RufrIu00TNoZFmq8DhpnuLoa22FCg%3D%3D","entryPoint":"handleLikeButtonClick","runtime":"nodejs10","dockerRegistry":"ARTIFACT_REGISTRY","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"0dcb0892b4d7693364c1316ab6d5dac322c5b02f"},"httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"minInstances":null,"maxInstances":null,"ingressSettings":null,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"paws621-be248\",\"databaseURL\":\"https://paws621-be248-default-rtdb.firebaseio.com\",\"storageBucket\":\"paws621-be248.appspot.com\",\"locationId\":\"europe-west2\"}","GCLOUD_PROJECT":"paws621-be248","EVENTARC_CLOUD_EVENT_SOURCE":"projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick"},"serviceAccountEmail":null,"availableMemoryMb":null,"timeout":null,"vpcConnector":null,"vpcConnectorEgressSettings":null,"buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}}
+[debug] [2024-01-07T19:33:17.386Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions 403
+[debug] [2024-01-07T19:33:17.387Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/paws621-be248/locations/us-central1/functions {"error":{"code":403,"message":"Unable to retrieve the repository metadata for projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.","status":"PERMISSION_DENIED"}}
+[warn] !  functions: failed to create function projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick 
+[error] Failed to create function projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick
+[debug] [2024-01-07T19:33:17.392Z] Total Function Deployment time: 348
+[debug] [2024-01-07T19:33:17.393Z] 1 Functions Deployed
+[debug] [2024-01-07T19:33:17.393Z] 1 Functions Errored
+[debug] [2024-01-07T19:33:17.393Z] 0 Function Deployments Aborted
+[debug] [2024-01-07T19:33:17.393Z] Average Function Deployment time: 348
+[info] 
+[info] Functions deploy had errors with the following functions:
+	handleLikeButtonClick(us-central1)
+[info] i  functions: cleaning up build files... 
+[debug] [2024-01-07T19:33:18.351Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts/packages/handle_like_button_click [none]
+[debug] [2024-01-07T19:33:18.352Z] >>> [apiv2][query] GET https://us.gcr.io/v2/paws621-be248/gcf/us-central1/tags/list [none]
+[debug] [2024-01-07T19:33:19.690Z] <<< [apiv2][status] GET https://us.gcr.io/v2/paws621-be248/gcf/us-central1/tags/list 200
+[debug] [2024-01-07T19:33:19.690Z] <<< [apiv2][body] GET https://us.gcr.io/v2/paws621-be248/gcf/us-central1/tags/list {"child":[],"manifest":{},"name":"paws621-be248/gcf/us-central1","tags":[]}
+[debug] [2024-01-07T19:33:19.690Z] Could not find image for function projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick
+[debug] [2024-01-07T19:33:20.301Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts/packages/handle_like_button_click 403
+[debug] [2024-01-07T19:33:20.301Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts/packages/handle_like_button_click {"error":{"code":403,"message":"This API method requires billing to be enabled. Please enable billing on project #paws621-be248 by visiting https://console.developers.google.com/billing/enable?project=paws621-be248 then retry. If you enabled billing for this project recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console billing","url":"https://console.developers.google.com/billing/enable?project=paws621-be248"}]},{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"BILLING_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/paws621-be248","service":"artifactregistry.googleapis.com"}}]}}
+[warn] !  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/artifacts/docker/paws621-be248/us-central1/gcf-artifacts 
+[debug] [2024-01-07T19:33:20.302Z] Functions deploy failed.
+[debug] [2024-01-07T19:33:20.302Z] {
+  "endpoint": {
+    "id": "handleLikeButtonClick",
+    "project": "paws621-be248",
+    "region": "us-central1",
+    "entryPoint": "handleLikeButtonClick",
+    "platform": "gcfv1",
+    "runtime": "nodejs10",
+    "callableTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"paws621-be248\",\"databaseURL\":\"https://paws621-be248-default-rtdb.firebaseio.com\",\"storageBucket\":\"paws621-be248.appspot.com\",\"locationId\":\"europe-west2\"}",
+      "GCLOUD_PROJECT": "paws621-be248",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick"
+    },
+    "codebase": "default",
+    "targetedByOnly": false,
+    "hash": "0dcb0892b4d7693364c1316ab6d5dac322c5b02f"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick"
+    },
+    "exit": 1,
+    "message": "Failed to create function projects/paws621-be248/locations/us-central1/functions/handleLikeButtonClick",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Unable to retrieve the repository metadata for projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.",
+            "status": "PERMISSION_DENIED"
+          }
+        },
+        "response": {
+          "statusCode": 403
+        }
+      },
+      "exit": 1,
+      "message": "HTTP Error: 403, Unable to retrieve the repository metadata for projects/paws621-be248/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.",
+      "status": 403
+    },
+    "status": 403,
+    "code": 403
+  }
+}
+[debug] [2024-01-07T19:33:20.410Z] Error: Failed to create function handleLikeButtonClick in region us-central1
+    at C:\Users\Tristan\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:51:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV1Function (C:\Users\Tristan\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:181:32)
+    at async Fabricator.createEndpoint (C:\Users\Tristan\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:133:13)
+    at async handle (C:\Users\Tristan\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:88:17)
+[error] 
+[error] Error: There was an error deploying functions

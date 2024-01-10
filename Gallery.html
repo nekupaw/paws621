@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paws621</title>
+    <link rel="icon" href="WebIcon.ico" type="image/x-icon">
+</head>
+
+<link rel="stylesheet" href="styles.css">
+
+<body id="Site" onload="onPageLoad()">
+
+
+
+    <div id="TopBarID" class="TopBar">
+
+        <div id="LogoID" class="Logo" onclick="window.scrollTo({top: 0, behavior: 'smooth',})"></div>
+
+            <button id="Btn1" type="button" class="DefaultButton"><img src="ui_design/pets_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;">Timeline</button>
+            <button style="background-color: rgba(255, 255, 255, 0.5); cursor: auto;" id="Btn2" type="button" class="DefaultButton"><img src="ui_design/photo_library_FILL0_wght400_GRAD0_opsz24_black.png" style="height: 22px; width: 22px;">Gallery</button>
+            <button id="Btn3" type="button" class="DefaultButton"><img src="ui_design/chat_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;">Chat</button>
+            <button id="PostBtn" type="button" class="PostBtn"></button>
+
+            <div id="AccountBarID" class="AccountBar" onclick="window.location.href = 'http://pawbs.de/Profile';">
+                <div id="currentPFP" class="AcountBarPFP"></div>
+                <div id="Username" class="ProfileText"></div>
+            </div>
+    
+    </div>
+
+    <div id="TopBarContainerID" class="TopBarContainer"></div>
+
+
+
+
+
+
+
+
+
+
+    <div id="splashScreen" class="splashScreenContainer">
+
+
+        <div class="splashScreenUploadContainer">
+
+            <a class="SplashUeberschrift">
+                <img src="branding/Logo.png" style="height: 200px; width: auto;">
+                <span style="font-size: 20px; position: fixed; color: white;">beta</span>
+            </a>
+
+            <img src="ui_design/lock_FILL0_wght400_GRAD0_opsz40.png" alt="lockSymbol">
+
+            <a class="SplashUploadText">First of all, to be able to visit the site, sign in beforehand owo</a>
+
+            <button class="LogInButton" style="display: inline-block;" type="button" onclick="window.location.href = 'http://pawbs.de/LogIn'">LogIn</button>
+
+            <form enctype="multipart/form-data">
+                <input type="file" id="imageFile" accept="image/*" style="display: none;">
+            <label style="display: none;" for="imageFile" id="upload" class="uploadBtn"></label>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div id="imageGallery" class="ImageGallery"></div>
+
+    <div class="background"></div>
+
+
+
+
+<!-- Firebase App (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- Firebase Storage (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+<!-- Firebase Auth (Version 8.x.x) - Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+<!-- Firebase Database -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+    <script>
+
+
+function LoadUserName()
+{
+    var user = firebase.auth().currentUser;
+
+
+            const db = firebase.database();
+            const usernameRef = db.ref('usernames').child(user.uid);
+
+            usernameRef.once('value')
+            .then(snapshot => 
+            {
+            const FirebaseUsername = snapshot.val();
+            document.getElementById("Username").textContent = FirebaseUsername;
+            })
+
+            .catch(error =>{
+                console.log("etwas ist schief gelaufen");
+            });
+    
+
+
+}
+
+
+
+function handleEscapeKey(event) {
+  var uploadImageViewContainer = document.getElementById('uploadImageViewId');
+  
+  if (event.keyCode === 27 && uploadImageViewContainer.style.display === "flex") {
+    CloseUploadContainer();
+  }
+}
+
+function checkEnter(event) {
+    var uploadImageViewContainer = document.getElementById('uploadImageViewId');
+
+    if (event.key === "Enter" && uploadImageViewContainer.style.display === "flex") {
+        uploadImage();
+    }
+}
+
+document.addEventListener("keydown", handleEscapeKey);
+document.addEventListener("keydown", checkEnter)
+
+
+
+function onPageLoad() {
+    document.body.classList.add('no-scroll');
+    getAuthCookie();
+    unlockSite();
+}
+
+
+function unlockSite() {
+    var SplashDisplay = document.getElementById('splashScreen');
+    SplashDisplay.style.display = "none";
+    document.body.classList.remove('no-scroll');
+}
+
+
+
+var fileInput = document.getElementById("imageFile");
+
+var ergebnisElement = document.getElementById("ergebnis");
+
+fileInput.addEventListener("change", function() {
+    var selectedFile = fileInput.files[0];
+
+    if (selectedFile)
+    {
+            var imageURL = URL.createObjectURL(selectedFile);
+            selectedImage.src = imageURL;
+
+            var fileNameElement = document.getElementById('fileName');
+            fileNameElement.textContent = "FileName: " + selectedFile.name
+
+            
+            var uploadImageViewContainer = document.getElementById('uploadImageViewId')
+            uploadImageViewContainer.style.display = "flex";
+
+    }
+});
+
+
+        
+        function CloseUploadContainer()
+        {
+            var uploadImageViewContainer = document.getElementById('uploadImageViewId')
+
+            uploadImageViewContainer.style.display = "none";
+
+            fileInput.value = '';
+        }
+
+
+        function triggerFileInput()
+        {
+            var fileInput = document.getElementById("imageFile");
+            fileInput.click();
+        }
+        
+        var firebaseConfig = {
+            apiKey: "AIzaSyDxwMf0VXc8Q4H5s2UIrzJtreCY9JBQCak",
+            authDomain: "paws621-be248.firebaseapp.com",
+            projectId: "paws621-be248",
+            storageBucket: "paws621-be248.appspot.com",
+            messagingSenderId: "540893716546",
+            appId: "1:540893716546:web:40a2250255059865e6cddb"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        function uploadImagee()
+        {
+            var UploadBtnn = document.getElementById("UploadBtnId");
+            var LoaderObj = document.getElementById("LoaderId");
+            var UploadCloseBtn = document.getElementById("UploadImageViewCloseBtnId")
+            var UploadSwitchBtn = document.getElementById("UploadImageViewSwitchBtnId");
+
+                UploadBtnn.style.display = "none";
+                LoaderObj.style.display = "flex";
+                UploadCloseBtn.style.display = "none";
+                UploadSwitchBtn.style.display = "none";
+        }
+
+
+        function uploadImage()
+        {
+            var fileInput = document.getElementById('imageFile');
+            var selectedFile = fileInput.files[0];
+
+            if (selectedFile) {
+                var storageRef = firebase.storage().ref();
+                var imageRef = storageRef.child('images/' + selectedFile.name);
+
+            var UploadBtnn = document.getElementById("UploadBtnId");
+            var LoaderObj = document.getElementById("LoaderId");
+            var UploadCloseBtn = document.getElementById("UploadImageViewCloseBtnId")
+            var UploadSwitchBtn = document.getElementById("UploadImageViewSwitchBtnId");
+
+                UploadBtnn.style.display = "none";
+                LoaderObj.style.display = "flex";
+                UploadCloseBtn.style.display = "none";
+                UploadSwitchBtn.style.display = "none";
+
+
+
+                imageRef.put(selectedFile).then(function(snapshot)
+                {
+
+
+                    location.reload();
+                }).catch(function(error) {
+                });
+            }
+        }
+
+
+        var imageGallery = document.getElementById('imageGallery');
+        var storageRef = firebase.storage().ref().child('images');
+
+        storageRef.listAll().then(function(result)
+        {
+        result.items.forEach(function(item)
+        {
+        item.getDownloadURL().then(function(url) {
+
+            var imageContainer = document.createElement('div');
+            imageContainer.classList.add('ImageGalleryContainer');
+
+
+            var img = document.createElement('img');
+            img.src = url;
+
+
+            imageContainer.appendChild(img);
+
+
+            imageGallery.appendChild(imageContainer);
+
+            imageContainer.addEventListener('click', function() {
+                console.log('Bild wurde angeklickt:', url);
+
+             });
+            });
+        });
+            }).catch(function(error) {
+                console.error('Fehler beim Auflisten der Bilder:', error);
+            });
+
+
+
+
+
+
+
+
+        var storageRef = firebase.storage().ref().child('images');
+        storageRef.listAll().then(function(result) {
+            var imageCount = result.items.length;
+            var imageCountElement = document.getElementById('imageCount');
+            imageCountElement.textContent = imageCount + ' Paw Pics';
+        }).catch(function(error) {
+            console.error('Fehler beim Zählen der Bilder:', error);
+        });
+
+
+        function getAuthCookie()
+        {
+            return decodeURIComponent(document.cookie)
+            .split('; ')
+            .find(cookie => cookie.startsWith("authToken="))
+            ?.split('=')[1] || null;
+        }
+
+
+
+        firebase.auth().onAuthStateChanged(function(user)
+        {
+
+        if (user)
+        {
+        unlockSite();
+        LoadUserName();
+        LoadPFP();
+        }
+        else
+        {
+
+        }
+
+        });
+
+
+        function LoadPFP() {
+
+
+const db = firebase.database();
+var user = firebase.auth().currentUser;
+const userRef = db.ref('PFP/' + user.uid);
+var PFP = document.getElementById("currentPFP");
+
+userRef.child('pfURL').on('value', function(snapshot)
+{
+    const pfURL = snapshot.val();
+
+    if (pfURL)
+    {
+        PFP.style.backgroundImage = "url('"+ pfURL +"')";
+    }
+    else
+    {
+
+    }
+});
+}
+
+
+document.addEventListener('scroll', function() {
+    var elements = ['TopBarID', 'LogoID', 'currentPFP', 'AccountBarID', 'Username', 'TopBarContainerID', 'Btn1', 'Btn2', 'Btn3', 'PostBtn'];
+    var TimelineBtn = document.getElementById('Btn1');
+    var GalleryBtn = document.getElementById('Btn2');
+    var ChatBtn = document.getElementById('Btn3');
+
+
+    elements.forEach(function(elementId) {
+        var element = document.getElementById(elementId);
+        element.classList.toggle('scrolled', window.scrollY > 0);
+    });
+
+    const IconStyle = 'height: 22px; width: 22px;';
+
+if (window.scrollY > 0) {
+    TimelineBtn.innerHTML = `<img src="ui_design/pets_FILL0_wght400_GRAD0_opsz24.png" style="${IconStyle}">`;
+    GalleryBtn.innerHTML = `<img src="ui_design/photo_library_FILL0_wght400_GRAD0_opsz24_black.png" style="${IconStyle}">`;
+    ChatBtn.innerHTML = `<img src="ui_design/chat_FILL0_wght400_GRAD0_opsz24.png" style="${IconStyle}">`;
+} else {
+    TimelineBtn.innerHTML = `<img src="ui_design/pets_FILL0_wght400_GRAD0_opsz24.png" style="${IconStyle}">Timeline`;
+    GalleryBtn.innerHTML = `<img src="ui_design/photo_library_FILL0_wght400_GRAD0_opsz24_black.png" style="${IconStyle}">Gallery`;
+    ChatBtn.innerHTML = `<img src="ui_design/chat_FILL0_wght400_GRAD0_opsz24.png" style="${IconStyle}">Chat`;
+}
+});
+
+
+
+
+
+
+    </script>
+</body>
+</html>

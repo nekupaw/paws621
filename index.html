@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home / Paws621</title>
+    <link rel="icon" href="WebIcon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="backgroundPets.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8133483889722888"
+     crossorigin="anonymous"></script>
+
+    <meta name="google-adsense-account" content="ca-pub-8133483889722888">
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-functions.js"></script>
+</head>
+
+
+<body id="Site" onload="onPageLoad()">
+
+
+
+
+
+
+    <div id="TopBarID" class="TopBar">
+
+        <div id="LogoID" class="Logo" onclick="window.scrollTo({top: 0, behavior: 'smooth',})"></div>
+
+            <button id="Btn1" style="background-color: rgba(255, 255, 255, 0.5); cursor: auto;" type="button" class="DefaultButton"><img src="ui_design/pets_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;">Timeline</button>
+            <button id="Btn2" type="button" class="DefaultButton"><img src="ui_design/photo_library_FILL0_wght400_GRAD0_opsz24_black.png" style="height: 22px; width: 22px;">Gallery</button>
+            <button id="Btn3" type="button" class="DefaultButton"><img src="ui_design/chat_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;">Chat</button>
+            <button id="PostBtn" type="button" class="PostBtn" onclick="EnterPostScreen()"></button>
+
+            <div id="AccountBarID" class="AccountBar" onclick="window.location.href = 'http://pawbs.de/Profile';">
+                <div id="currentPFP" class="AcountBarPFP"></div>
+                <div id="Username" class="ProfileText"></div>
+            </div>
+    
+    </div>
+
+    <div id="TopBarContainerID" class="TopBarContainer"></div>
+
+
+
+
+    <div id="splashScreen" class="splashScreenContainer">
+
+
+        <div class="splashScreenUploadContainer">
+
+            <a class="SplashUeberschrift">
+                <img src="branding/Logo.png" style="height: 200px; width: auto;">
+                <span style="font-size: 20px; position: fixed; color: white;">beta</span>
+            </a>
+
+            <img src="ui_design/lock_FILL0_wght400_GRAD0_opsz40.png" alt="lockSymbol">
+
+            <a class="SplashUploadText">First of all, to be able to visit the site, sign in beforehand owo</a>
+
+            <button class="LogInButton" style="display: inline-block;" type="button" onclick="window.location.href = 'http://pawbs.de/LogIn'">LogIn</button>
+
+            <form enctype="multipart/form-data">
+                <input type="file" id="imageFile" accept="image/*" style="display: none;">
+            <label style="display: none;" for="imageFile" id="upload" class="uploadBtn"></label>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <div id="PostScreen" class="uploadBackground">
+        <div class="uploadContainer" id="barkPostUploadContainerID">
+            <div class="uploadSpaceHolder"></div>
+            <div class="uploadPFCard"><img src="" class="uploadPFP" id="uploadContainerPFP" >
+                <p class="uploadUsername" id="uploadContainerUsername"></p>
+                <p class="uploadContainerDate" id="uploadContainerDate">19. Juni 2023</p>
+            </div>
+            <textarea id="BarkPostText" rows="4" cols="50" class="uploadBarkInputField" placeholder="What's happening!?"></textarea>
+
+            <div class="BarkAddPictureViewContainer" id="BarkAddedImagesContainer">
+
+            </div>
+
+            <span style="display: flex; flex-direction: row; align-items: center; gap: 20px; margin-left: 20px; margin-bottom: 5px;">
+                <button class="uploadPostBtn" type="button" onclick="bark()">Bark!</button>
+
+                <form action="/AddImageToBark" method="post" enctype="multipart/form-data">
+                    <input type="file" id="AddImageToBarkID" name="imageOnBark" accept="image/*" style="display: none;" onchange="AddPicutreToBark()">
+                    <label for="AddImageToBarkID" id="AddImageToBarkLabel" class="AddImageBtn"></label>
+                </form>
+
+                <p id="noContentText" style="font-size: 15px; color: rgb(65, 65, 65); margin-left: 11px;"></p>
+            </span>
+
+            <div class="uploadSpaceHolder"></div>
+        </div>
+        <button id="uploadCloseBtnId" type="button" class="UploadCloseBtn" onclick="ExitPostScreen()">X</button>
+    </div> 
+
+
+    <div class="timelineContainer">
+        <div class="timeline" id="timelineID">
+
+
+        </div>
+    </div>
+
+
+
+    <div class="background">
+        
+    </div>
+
+
+    <script src="serverScript/likeBark.js"></script>
+
+    <script src="index.js"></script>
+    <script src="timelineScript.js"></script>
+    <script src="functions_improvisational/functions.js"></script>
+
+    <script>
+
+        function barkAddPictureMouseOver(){
+            var removePictureBtn = document.getElementById('removePictureOnBarkBtnId');
+        removePictureBtn.style.display = 'flex';
+        }
+
+        function barkAddPictureMouseLeave(){
+            var removePictureBtn = document.getElementById('removePictureOnBarkBtnId');
+        removePictureBtn.style.display = 'none';
+        }
+
+
+    </script>
+
+
+</body>
+</html>

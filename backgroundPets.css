@@ -1,0 +1,49 @@
+.pet {
+    background-image: url(ui_design/pets.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100px;
+  
+    width: 100px;
+    height: 100px;
+  
+    filter: opacity(50%);
+    z-index: -1;
+  }
+  
+  .petOneRight {
+    transform: rotate(25deg);
+    padding-left: 210px;
+  }
+  
+  .petOneLeft {
+    transform: rotate(-25deg);
+  }
+  
+  .petTwoRight {
+    transform: rotate(60deg);
+    padding-left: 210px;
+  }
+  
+  .petTwoLeft {
+    transform: rotate(-60deg);
+  }
+  
+  .petThreeRight {
+    transform: rotate(80deg);
+    padding-left: 210px;
+  }
+  
+  .petThreeLeft {
+    transform: rotate(-80deg);
+  }
+  
+  .PetLeftContainer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-top: 15px;
+  }
+
+  

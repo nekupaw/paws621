@@ -1,0 +1,16 @@
+<!-- Firebase App (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- Firebase Storage (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+    <script>
+        // Firebase-Konfiguration (ersetzen Sie diese Werte durch Ihre eigenen)
+        var firebaseConfig = {
+            apiKey: "AIzaSyDxwMf0VXc8Q4H5s2UIrzJtreCY9JBQCak",
+            authDomain: "paws621-be248.firebaseapp.com",
+            projectId: "paws621-be248",
+            storageBucket: "paws621-be248.appspot.com",
+            messagingSenderId: "540893716546",
+            appId: "1:540893716546:web:40a2250255059865e6cddb"
+        };

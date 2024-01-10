@@ -1,0 +1,117 @@
+.Background
+{
+    background-color: #23083d;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+@font-face
+{
+    font-family: 'Dreieque';
+    src: url('Dreieque.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a 
+{
+    text-decoration: none;
+}
+
+*
+{
+font-family: 'Dreieque', sans-serif;
+color: white;
+background: none;
+}
+
+
+.Ueberschrift
+{
+    font-size: 40px;
+}
+
+.UeberschriftContainer
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    height: 50px;
+    justify-content: left;
+    align-items: center;
+}
+
+.ImageContainer
+{
+    height: 700px;
+    width: 700px;
+    text-align: center;
+    display: inline-block;
+}
+
+.Image
+{
+    display: block;
+    height: 600px;
+    width: 600px;
+    align-items: center;
+}
+
+.MetadataContainer
+{
+    margin-left: 20px;
+    text-align: left;
+    display: block;
+    height: 700px;
+    width: 2000px;
+}
+
+
+
+.MetaDataFileName,
+.MetaDataFileSize
+{
+    font-size: 25px;
+    margin-top: 100px;
+    display: block;
+}
+
+.FullImageContainer
+{
+    display: flex;
+    margin-top: 70px;
+    margin-left: 150px;
+    justify-content: left;
+    align-items: center;
+    width: 150px;
+}
+
+.BtnContainer
+{
+gap: 20px;
+display: flex;
+height: auto;
+width: 200px;
+}
+
+.DownloadBtn,
+.ViewBtn
+{
+    margin-top: 100px;
+    background-color: rgb(255, 29, 244);
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    width: 170px;
+    height: 40px;
+    padding: 10px 30px;
+}
+
+button span
+{
+    font-size: 17px;
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws621 - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="WebIcon.ico" type="x-icon/web">
+</head>
+<body onload="LoadSite()">
+
+
+    <div class="myProfileFullContainer">
+        <div class="ProfileContainer">
+            <div class="ProfileBanner"></div>
+            <div class="ProfileDataContainer">
+    
+                <div id="pfp" class="ProfilePFP"><img id="PFPID" src="ui_design/edit_btn.png" class="editBtn" alt="" onclick="selectedPFP.click();"></div>
+                <input id="UsernameInputID" class="ProfileName" type="text" value="" maxlength="18" onclick="select();" onchange="checkChanges()">
+                <button type="button" id="LogOutBtn" class="LogOutBtn" onclick="LogOutBtnClick()">LogOut</button>
+                <button id="saveChangesBtnID" class="SaveChangesBtn" onclick="SaveChanges()" value="SaveChanges">Save Changes</button>
+    
+            </div>
+    
+    </div>
+
+    <form enctype="multipart/form-data">
+        <input type="file" id="PFPFile" accept="image/*" style="display: none;">
+    <label style="display: none;" for="imageFile" id="PFPUpload"></label>
+
+
+
+
+
+
+</body>
+
+<!-- Firebase App -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- Firebase Storage -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+<!-- Firebase Auth - Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+<!-- Firebase Database -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+<script>
+
+const firebaseConfig = {
+            apiKey: "AIzaSyDxwMf0VXc8Q4H5s2UIrzJtreCY9JBQCak",
+            authDomain: "paws621-be248.firebaseapp.com",
+            projectId: "paws621-be248",
+            storageBucket: "paws621-be248.appspot.com",
+            messagingSenderId: "540893716546",
+            appId: "1:540893716546:web:40a2250255059865e6cddb"
+};
+
+// Initialisiere Firebase-App
+firebase.initializeApp(firebaseConfig);
+
+var changes = false;
+var NameChanges = false;
+var PFPChanges = false;
+
+var SaveBtn = document.getElementById("saveChangesBtnID");
+
+var UsernameLoaded = "user621";
+
+const currentPFP = document.getElementById("pfp");
+
+const selectedPFP = document.getElementById("PFPFile");
+
+
+selectedPFP.addEventListener('change', function()
+{
+
+    var selectedImg = selectedPFP.files[0];
+    if (selectedImg)
+    {
+        const selectedImageURL = URL.createObjectURL(selectedImg);
+        currentPFP.style.backgroundImage = "url('" + selectedImageURL + "')";
+        PFPChanges = true;
+        checkChanges();
+    }
+    else
+    {
+        
+    }
+})
+
+
+function checkChanges() {
+
+
+
+    var currentUsername = document.getElementById("UsernameInputID").value;
+
+
+
+    if (PFPChanges === true)
+    {
+        if (changes === false)
+        {
+            changes = true;
+            SaveBtn.style.cursor = 'pointer';
+            SaveBtn.style.backgroundColor = 'rgba(255, 255, 255, 1.0)';
+            SaveBtn.disabled = false;
+        }
+    }
+
+    if (UsernameLoaded === currentUsername)
+    {
+        if (NameChanges === true)
+        {
+            NameChanges = false;
+
+            if (PFPChanges === false){
+                changes = false;
+                SaveBtn.style.cursor = 'auto';
+                SaveBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                SaveBtn.disabled = true;
+            }
+        }
+    }
+
+    else
+    {
+        if (NameChanges === false)
+        {
+            NameChanges = true;
+            SaveBtn.style.cursor = 'pointer';
+            SaveBtn.style.backgroundColor = 'rgba(255, 255, 255, 1.0)';
+            SaveBtn.disabled = false;
+
+            if (changes === false){
+                changes = true;
+            }
+        }
+    }
+}
+
+
+function LogOutBtnClick()
+{
+    var Btn = document.getElementById("LogOutBtn");
+
+    Btn.style.width = '50px';
+    Btn.textContent = "✔";
+    Btn.style.cursor = 'auto';
+    Btn.disabled = 'true';
+
+    setTimeout(LogOut, 700);
+}
+
+
+function SaveChanges()
+{
+    var Loader = document.getElementById("SaveChangesLoader");
+
+    if (changes === true)
+
+    SaveBtn.style.width = '45px';
+    SaveBtn.innerHTML = '<div id="SaveChangesLoader" class="loaderLogIn" style="display: flex;"></div>'
+    SaveBtn.style.cursor = 'auto';
+    {
+        if (NameChanges === true)
+        {
+            changeUserName();
+        }
+
+        if (PFPChanges === true)
+        {
+            uploadImage();
+        }
+    }
+}
+
+
+function LogOut()
+{
+    var authToken = getAuthCookie();
+
+    firebase.auth().signOut().then(function(){
+        window.location.href = ('http://pawbs.de')
+        deleteCookie("authToken");
+        
+    }).catch(function(error){
+        location.reload(true);
+    });
+    
+    
+}
+
+
+function LoadSite(){
+    getAuthCookie();
+    SaveBtn.disabled = 'true';
+}
+
+
+
+
+
+function ChangesSuccessful()
+{
+    var SaveBtn = document.getElementById("saveChangesBtnID");
+            SaveBtn.innerHTML = 'Save Changes'
+            SaveBtn.style.width = '185px';
+            SaveBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+
+            changes = false;
+
+            if (PFPChanges === true){
+                PFPChanges = false;
+            }
+            if (NameChanges === true){
+                NameChanges = false;
+            }
+}
+
+
+
+
+
+function changeUserName(){
+
+    var currentUsername = document.getElementById("UsernameInputID").value;
+    var user = firebase.auth().currentUser;
+
+        if (user)
+        {
+        const db = firebase.database();
+        const usernameRef = db.ref('usernames').child(user.uid);
+
+        usernameRef.set(currentUsername)
+        .then(() => 
+        {
+            ChangesSuccessful();
+        }
+        )
+        }
+}
+
+
+function LoadUserName()
+{
+    var user = firebase.auth().currentUser;
+
+
+            const db = firebase.database();
+            const usernameRef = db.ref('usernames').child(user.uid);
+
+            usernameRef.once('value')
+            .then(snapshot => 
+            {
+            const FirebaseUsername = snapshot.val();
+            document.getElementById("UsernameInputID").value = FirebaseUsername;
+            UsernameLoaded = FirebaseUsername;
+            })
+
+            .catch(error =>{
+                console.log("etwas ist schief gelaufen");
+            });
+    
+
+
+}
+
+
+function getAuthCookie()
+        {
+            return decodeURIComponent(document.cookie)
+            .split('; ')
+            .find(cookie => cookie.startsWith("authToken="))
+            ?.split('=')[1] || null;
+        }
+
+
+
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+    if (user)
+    {
+    console.log("User ist angemeldet");
+    LoadUserName();
+        LoadPFP();
+    }
+    else
+    {
+        window.location.href = 'http://pawbs.de/LogIn';
+    }
+});
+
+
+
+
+function uploadImage()
+        {
+            var fileInput = document.getElementById('PFPFile');
+            var selectedFile = fileInput.files[0];
+
+            if (selectedFile)
+            {
+                var storageRef = firebase.storage().ref();
+                var imageRef = storageRef.child('PFP/' + selectedFile.name);
+
+
+                imageRef.put(selectedFile).then(function(snapshot)
+                {
+                    return snapshot.ref.getDownloadURL();
+                    }).then(function(downloadURL) {
+
+                    saveImageUrlToDatabase(downloadURL);
+
+                    ChangesSuccessful();
+                    
+                }).catch(function(error)
+                {
+
+                });
+            }
+        }
+
+
+    function saveImageUrlToDatabase(downloadURL)
+    {
+    const user = firebase.auth().currentUser;
+    const db = firebase.database();
+    const userRef = db.ref('PFP/' + user.uid);
+
+
+    userRef.update({ pfURL: downloadURL })
+      .then(() => {
+
+      })
+      .catch((error) => {
+
+      });
+  }
+
+
+function LoadPFP() {
+
+
+        const db = firebase.database();
+        var user = firebase.auth().currentUser;
+        const userRef = db.ref('PFP/' + user.uid);
+
+        userRef.child('pfURL').on('value', function(snapshot)
+        {
+            const pfURL = snapshot.val();
+
+            // Überprüfen, ob die pfURL vorhanden ist
+            if (pfURL)
+            {
+                currentPFP.style.backgroundImage = "url('"+ pfURL +"')";
+            }
+            else
+            {
+
+            }
+        });
+    }
+
+
+
+
+</script>
+
+
+</html>
