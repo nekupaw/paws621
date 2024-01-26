@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws621 - LogIn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="WebIcon.ico" type="image/x-icon" >
+</head>
+<body>
+    
+
+
+<div class="LogInFrame">
+
+
+    <div class="LogInFrameUeberschrift">Paws621
+        <span style="font-size: 16px;">beta</span>
+    </div>
+
+    <p class="LogInFrameLogInText" id="LogInFrameText">LogIn</p>
+
+    <div class="LogInFrameInputContainer">
+        <input style="display: block;" id="LogInemailInputID" class="LogInEmailInput" type="email" placeholder="E-Mail">
+        <input id="LogInFramePasswordInputID" style="display: block;" class="LogInFramePasswordInput" type="password" placeholder="Password">
+
+
+        <input id="RegisterEmailInputID" style="display: none;" class="LogInEmailInput" type="email" placeholder="E-Mail">
+        <input id="RegisterFramePasswordInputID" style="display: none;" class="RegisterFramePasswordInput" type="password" placeholder="Password">
+        <input id="RegisterFramePasswordAgainInputID" style="display: none;" class="RegisterFramePasswordAgainInput" type="password" placeholder="Password again">
+    </div>
+    <p id="ErrorTextID" style="position: fixed;margin-top: 170px; margin-left: 62px; font-size: 14px;"></p>
+    
+    <button onclick="LogInFirebase()" class="LogInFrameLogInBtn" id="LogInBtn">LogIn</button>
+    <div id="LogInLoader" class="loaderLogIn" style="margin-top: 60px; margin-left: 130px;"></div>
+
+    <button class="BackBtnContainer" id="BackBtnID" onclick="BackBtnFunction()"></button>
+
+
+
+    <div class="LogInFrameBtn">
+
+        <button class="LogInFrameRegisterBtn" id="RegisterBtn" onclick="RegisterBtnFunction()">Register</button>
+        <div id="RegisterLoader" class="loaderLogIn" style="margin-bottom: 280px; margin-right: 110px;" ></div>
+
+    <a href="https://github.com/Nitrons263626/Paws621" target="_blank">
+
+        <button class="GithubBtn"></button>
+    </a>
+    <a href="https://twitter.com/nekupaw" target="_blank">
+            
+        <button class="TwitterBtn"></button>
+    </a>
+    <a href="https://germanfurry.de" target="_blank">
+
+            <button class="GermanFurryBtn"></button>
+        </a>
+    </div>
+</div>
+
+    
+</body>
+
+
+
+
+<!-- Firebase App (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- Firebase Storage (Version 8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+<!-- Firebase Auth (Version 8.x.x) - Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+
+<!-- Firebase Database -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+<script>
+
+const firebaseConfig = {
+            apiKey: "AIzaSyDxwMf0VXc8Q4H5s2UIrzJtreCY9JBQCak",
+            authDomain: "paws621-be248.firebaseapp.com",
+            projectId: "paws621-be248",
+            storageBucket: "paws621-be248.appspot.com",
+            messagingSenderId: "540893716546",
+            appId: "1:540893716546:web:40a2250255059865e6cddb"
+};
+
+// Initialisiere Firebase-App
+firebase.initializeApp(firebaseConfig);
+
+
+
+var LogIn = true;
+
+var RegisterButton = document.getElementById("RegisterBtn");
+var LogInText = document.getElementById("LogInFrameText");
+var LogInButton = document.getElementById("LogInBtn");
+var RegisterPassword = document.getElementById("RegisterFramePasswordInputID");
+var RegisterPasswordAgain = document.getElementById("RegisterFramePasswordAgainInputID");
+var LogInPassword = document.getElementById("LogInFramePasswordInputID");
+var LogInEmailInput = document.getElementById("LogInemailInputID");
+var RegisterEmailInput = document.getElementById("RegisterEmailInputID");
+var ErrorText = document.getElementById("ErrorTextID");
+var BackBtn = document.getElementById("BackBtnID");
+
+
+
+document.addEventListener("keydown", PressEnterFunction)
+
+function PressEnterFunction(event){
+    if (event.key === "Enter"){
+
+        if (LogIn === true){
+            LogInButton.click();
+        }
+        else{
+            RegisterButton.click();
+        }
+    }
+}
+
+
+
+function RegisterBtnFunction()
+{
+    ErrorText.textContent = ""
+
+if (LogIn){
+
+    LogIn = !LogIn;
+
+    RegisterButton.style.width = '170px';
+    RegisterButton.style.marginLeft = '-110px';
+    LogInText.textContent = "Register";
+    LogInButton.style.display = 'none';
+    RegisterPassword.style.display = 'block';
+    RegisterPasswordAgain.style.display = 'block';
+    LogInPassword.style.display = 'none';
+    LogInEmailInput.style.display = 'none';
+    RegisterEmailInput.style.display = 'block';
+    BackBtn.style.display = 'inline-block';
+}
+else
+{
+    console.log("RegisterPassword:" + RegisterPassword);
+    console.log("RegisterPasswordAgain:" + RegisterPasswordAgain);
+
+    if (RegisterPassword.value === RegisterPasswordAgain.value)
+    {
+        ErrorText.textContent = ""
+        RegisterFirebase();
+    }
+    else
+    {
+        ErrorText.textContent = "Passwords do not match";
+    }
+
+}
+
+
+}
+
+
+function BackBtnFunction()
+{
+    RegisterButton.textContent = "Register";
+    RegisterButton.fontSize = '20px';
+
+    ErrorText.textContent = ""
+
+    LogIn = !LogIn
+
+    RegisterButton.style.width = '370px';
+    RegisterButton.style.marginLeft = '0px';
+    LogInText.textContent = "LogIn";
+    LogInButton.style.display = 'block';
+    RegisterPassword.style.display = 'none';
+    RegisterPasswordAgain.style.display = 'none';
+    LogInPassword.style.display = 'flex';
+    LogInEmailInput.style.display = 'flex';
+    RegisterEmailInput.style.display = 'none';
+    BackBtn.style.display = 'none';
+
+    RegisterButton.disabled = false;
+    RegisterButton.style.cursor = 'pointer';
+    BackBtn.disabled = false;
+
+}
+
+function RegisterFirebase()
+{
+
+    var Loader = document.getElementById("RegisterLoader");
+
+    Loader.style.display = 'block';
+    RegisterButton.textContent = "";
+    RegisterButton.disabled = true;
+    BackBtn.disabled = true;
+    RegisterButton.style.cursor = 'auto';
+    
+
+    var RegisterEmail = document.getElementById("RegisterEmailInputID").value;
+    var RegisterPassword = document.getElementById("RegisterFramePasswordInputID").value;
+
+
+  firebase.auth().createUserWithEmailAndPassword(RegisterEmail, RegisterPassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Benutzer erfolgreich registriert: " + user.email);
+        Loader.style.display = 'none';
+        RegisterButton.style.width = '48px';
+        RegisterButton.textContent = "✓";
+        RegisterButton.fontSize = '25px';
+        RegisterButton.style.marginLeft = '-240px'
+        ErrorText.textContent = "Acount Created"
+        firebase.auth().signInWithEmailAndPassword(RegisterEmail, RegisterPassword)
+                .then((userCredential) => {
+                    setAuthCookie();
+                    setTimeout(LoadToHome, 800);
+                })
+                .catch((error) => {
+                    console.log("error");
+                });
+        
+
+                const db = firebase.database();
+                const usernameRef = db.ref('usernames').child(user.uid);
+
+                usernameRef.set('new User621')
+                
+
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Registration failed: " + errorMessage);
+
+      Loader.style.display = 'none';
+      RegisterButton.textContent = "Register";
+      RegisterButton.disabled = false;
+      BackBtn.disabled = false;
+      RegisterButton.style.cursor = 'pointer';
+    });
+}
+
+function LogInFirebase()
+{
+    var Loader = document.getElementById("LogInLoader");
+
+    LogInButton.textContent = "";
+    LogInButton.disabled = true;
+    LogInButton.style.cursor = 'auto';
+    Loader.style.display = 'block';
+
+    const email = document.getElementById("LogInemailInputID").value;
+    const password = document.getElementById("LogInFramePasswordInputID").value;
+    ErrorText.textContent = ""
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Erfolgreiche Anmeldung
+                    const user = userCredential.user;
+
+                    Loader.style.display = 'none';
+                    LogInButton.textContent = "✓";
+                    LogInButton.style.width = '48px';
+                    LogInButton.style.fontSize = '25px'
+                    setAuthCookie();
+                    setTimeout(LoadToHome, 800);
+                })
+                .catch((error) => {
+                    // Fehler bei der Anmeldung
+                    LogInButton.disabled = false;
+                    LogInButton.style.cursor = 'pointer';
+                    Loader.style.display = 'none';
+                    LogInButton.textContent = "LogIn";
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Login faild: " + errorMessage);
+                    ErrorText.textContent = "Login data does not match";
+                });
+}
+
+
+function LoadToHome(){
+    window.location.href = 'http://pawbs.de';
+}
+
+
+
+function setAuthCookie()
+{
+    var user = firebase.auth().currentUser;
+    user.getIdToken().then(function(token){
+    
+    document.cookie = "authToken=" + token;
+    })
+}
+
+</script>
+
+
+
+
+
+
+</html>

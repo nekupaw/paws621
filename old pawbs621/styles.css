@@ -1,0 +1,67 @@
+@font-face
+{
+    font-family: 'Dreieque';
+    src: url('Dreieque.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*
+{
+    font-family: 'Dreieque', 'Roboto';
+}
+
+.background
+{
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+
+    z-index: -2;
+
+    background: linear-gradient(to bottom, #7c7fff, #9700c9);
+}
+
+body
+{
+    height: 100vh;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.Logo
+{
+    width: 300px;
+}
+
+.Text
+{
+    color: white;
+    text-align: center;
+    white-space: pre-Line;
+
+    font-size: 25px;
+
+}
+
+
+.Container
+{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}

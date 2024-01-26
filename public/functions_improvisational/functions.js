@@ -39,9 +39,6 @@ async function commentFunction(barkId, commentText)
     await Ref.add(
         {
             commentText: `${commentText}`,
-            userID: `${userId}`,
-            date: firebase.firestore.FieldValue.serverTimestamp(),
-            barkId: collectionRef.doc().id,
-            ImageUrl: null
-        });
+            userID: `${userId}`
+        })
 }

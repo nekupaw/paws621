@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@nekupaw / Paws621</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-functions.js"></script>
+</head>
+<body>
+    
+    <div id="TopBarID" class="TopBar scrolled">
+        <div id="LogoID" class="Logo scrolled" onclick="window.location.href = 'http://pawbs.de/Timeline'"></div>
+            <button id="Btn1" style="background-color: rgba(255, 255, 255, 0.5); cursor: auto;" type="button" class="DefaultButton scrolled"><img src="ui_design/pets_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;"></button>
+            <button id="Btn2" type="button" class="DefaultButton scrolled"><img src="ui_design/photo_library_FILL0_wght400_GRAD0_opsz24_black.png" style="height: 22px; width: 22px;"></button>
+            <button id="Btn3" type="button" class="DefaultButton scrolled"><img src="ui_design/chat_FILL0_wght400_GRAD0_opsz24.png" style="height: 22px; width: 22px;"></button>
+            <button id="PostBtn" type="button" class="PostBtn scrolled" onclick="EnterPostScreen()"></button>
+
+            <div id="AccountBarID" class="AccountBar scrolled" onclick="window.location.href = 'http://pawbs.de/Profile';">
+                <div id="currentPFP" class="AcountBarPFP scrolled"></div>
+                <div id="Username" class="ProfileText scrolled"></div>
+            </div> 
+    </div>
+
+
+    <div class="ProfileContainer">
+        <div class="ProfileCardContainer">
+            <div class="ProfileCardData">
+                <div class="ProfileSitePFP" id="currentUserPFP"></div>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 10px;">
+                <p style="font-size: 30px; margin: 0;" id="ProfileSiteUsername"></p>
+                <span id="ProfileVerifyMarkContainer" class="barkVerifyHoverContainerStyle">
+
+                </span>
+            </div>
+            <div style="display: flex; flex-direction: row; gap: 20px;">
+                <p id="FollowerCountID" class="FollowTextFomation">0 follower</p>
+                <p class="FollowTextFomation">200 following</p>
+            </div>
+            <button class="FollowBtn" type="button">Follow</button>
+
+            <textarea readonly class="ProfileSiteAboutMeTextarea" maxlength="120" cols="30" rows="10">
+me pawsome ;3
+Heyo, I'm a cat and online here from time to time.
+</textarea>
+        </div>
+    </div>
+
+
+    <div class="background"></div>
+
+
+    <script src="index.js"></script>
+    <script src="userProfile.js"></script>
+</body>
+</html>
