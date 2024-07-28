@@ -5,4 +5,4 @@ I started this project last year because of Twitter's rebranding and with the ho
 With this project I also learned about web development.
 If possible I would release it this year and hopefully get new users :3
 
-The "framework" is not yet finished and I strongly advise against using it for your own purposes
+The framework is not yet finished and I strongly advise against using it for your own purposes
